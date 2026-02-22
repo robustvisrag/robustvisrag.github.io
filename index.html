@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<!--   <meta name="description"
+        content="UniRestore bridges the gap between Perceptual Image Restoration (PIR) and Task-oriented Image Restoration (TIR) by leveraging a diffusion prior and adaptive feature fusion. While PIR enhances visual quality and TIR improves downstream task performance, UniRestore optimizes both aspects by integrating Complementary Feature Restoration Module (CFRM) and Task Feature Adapter (TFA), ensuring high-quality restorations that support downstream vision tasks effectively.">
+  <meta name="keywords" content="Point-based, Crowd Counting, Localization, Auxiliary Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="./static/images/thumbnail.png"/>
+  <link rel="image_src" href="./static/images/thumbnail.png">
+  <link rel="icon"
+        type="image/x-icon"
+        href="./static/images/favicon.ico"/> -->
+
+  <meta name="description"
+        content="RobustVisRAG improves Vision-based Retrieval-Augmented Generation (VisRAG) under visual degradations by introducing a causality-guided dual-path encoder that disentangles semantic and degradation factors. Through Non-Causal Distortion Modeling (NCDM) and Causal Semantic Alignment (CSA), it enhances retrieval, generation, and end-to-end robustness without additional inference cost. We further introduce the Distortion-VisRAG benchmark covering synthetic and real-world degradations.">
+  <meta name="keywords" content="Retrieval-Augmented Generation, RAG, Vision-Language Models, VLM, Causal Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="./robustvisrag_files/logo.png"/>
+  <link rel="image_src" href="./robustvisrag_files/logo.png">
+  <link rel="icon"
+        type="image/x-icon"
+        href="./robustvisrag_files/logo.png"/>
+
+  <title>RobustVisRAG: Robust Vision-based Retrieval-Augmented Generation under Visual Degradations
+    </title>
+
+
+    <style>
+        .img-container {
+            text-align: center; /* Center the text and images */
+            margin-bottom: 20px; /* Adds some space between the image groups */
+        }
+
+        .image-with-caption {
+            display: inline-block; /* Allows multiple elements side by side */
+            margin: 10px; /* Adds some space around each image and caption */
+        }
+
+        .custom-gif {
+            width: 200px; /* Adjust based on your preference */
+            height: auto; /* Maintain aspect ratio */
+            margin-top: 10px; /* Space between caption and image */
+        }
+
+        .regular-gif{
+          width: 200px;
+          height: 120px;
+          margin-top: 10px
+        }
+
+        .caption {
+            font-weight: bold; /* Optional: makes the caption text bold */
+        }
+    </style>
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EDF010G6PN"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EDF010G6PN');
+
+  </script>
+
+  <script type="module"
+          src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="./static/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="./static/slick/slick-theme.css"/>
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+<!--       <div class="columns is-centered">
+        <div class="column is-4 has-text-centered">
+          <img src="static/images/logo.svg" alt="HyperNeRF"/>
+        </div>
+      </div> -->
+      <div class="container has-text-centered">
+        <h1 class="title is-1 publication-title">
+			RobustVisRAG: Causality-Aware Vision-Based Retrieval-Augmented Generation under Visual Degradations.
+        </h1> 
+        <div class="is-size-5 publication-authors">
+          <div class="author-block"><a href="https://sites.google.com/view/cihsiang/home">I-Hsiang Chen</a> <sup> 1 </sup></div>
+          <div class="author-block"><a href="https://scholar.google.com/citations?user=oZanP1AAAAAJ&hl=zh-TW"> Yu-Wei Liu</a> <sup> 1</sup></div>
+          <div class="author-block"><a href="https://scholar.google.com.tw/citations?user=xUtdoMcAAAAJ&hl=zh-TW"> Tse-Yu Wu</a> <sup> 1</sup></div>
+          <div class="author-block"><a href="https://scholar.google.com.tw/citations?user=xUtdoMcAAAAJ&hl=zh-TW"> Yu-Chien Chiang</a> <sup> 1</sup></div>
+          <div class="author-block"><a href="https://scholar.google.com.tw/citations?user=xUtdoMcAAAAJ&hl=zh-TW"> Yang Jen-Chieh</a> <sup> 1</sup></div>
+          <div class="author-block"><a href="https://sites.google.com/view/weitingchen/home"> Wei-Ting Chen</a> <sup> 2 </sup></div>
+        <div class="is-size-5 publication-authors">
+          <span class="author-block"><sup>1</sup>National Taiwan University</span>
+          <span class="author-block"><sup>2</sup>Microsoft</span>
+        </div>
+
+        <!-- <div class="is-size-5 publication-authors">
+          <span class="author-block"> </sup>* Co-corresponding authors</span>
+        </div> -->
+        <div class="is-size-5 publication-authors">
+          <span class="author-block"> </sup>(CVPR 2025 Highlight)</span>
+        </div>
+          
+        <div class="column has-text-centered">
+          <div class="publication-links">
+            <!-- PDF Link. -->
+            <span class="link-block">
+                <a href="https://arxiv.org/abs/2501.13134" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+            <span class="link-block">
+                <a href="https://arxiv.org/abs/2501.13134" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+            </span>
+            <span class="link-block">
+              <a href="https://github.com/unirestore/UniRestore"  
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+                </a>
+            </span>
+            <!-- Dataset Link. -->
+            <span class="link-block">
+              <a href="https://github.com/unirestore/UniRestore" 
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="far fa-images"></i>
+                </span>
+                <span>Data</span>
+                </a>
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video autoplay muted loop playsinline style="width: 100%; height: auto; border-radius: 12px;">
+        <source src="./unirestore_files/teaser/teaser2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="methodname">UniRestore</span> is a unified image restoration framework for both perceptual and machine vision.
+      </h2>
+    </div>
+  </div>
+</section>  -->
+
+<!-- 
+
+<div class="columns is-centered">
+  <div class="column is-two-thirds has-text-justified">
+    <p>
+      <b>UniRestore</b> leverages diffusion prior to unify <span class="tag is-light is-info">Perceptual Image Restoration (PIR)</span> 
+      and <span class="tag is-light is-warning">Task-oriented Image Restoration (TIR)</span>,
+      achieving both high visual fidelity and task utility.
+      <b>PIR</b> enhances visual clarity, but its outputs may not benefit recognition tasks.
+      In contrast, <b>TIR</b> optimizes features for tasks like classification or segmentation,
+      but often compromises visual appeal.
+    </p>
+  </div>
+</div> -->
+
+
+<!-- 
+<hr/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Responsive YouTube Video Embed</title>
+    <style>
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .video-container iframe {
+            width: 100%;
+            max-width: 720px; /* Optional: Set a max-width if you want */
+            height: auto;
+            aspect-ratio: 16 / 9;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/Jm1NkDDXN90" 
+			title="YouTube video player" 
+			frameborder="0" 
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+			referrerpolicy="strict-origin-when-cross-origin" 
+			allowfullscreen>
+		</iframe>
+    </div>
+</body>
+</html> -->
+
+
+
+<script type="text/javascript" src="./static/slick/slick.min.js"></script>
+</body>
+</html>
