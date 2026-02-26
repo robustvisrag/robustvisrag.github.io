@@ -263,29 +263,7 @@
   }
 </style>
 
-<!-- 重新來過好了, 我的架構會變成:
-
-Overview
-簡短的話大概介紹main contribution
-
-Preliminary (2 columns)
-Col1: VisRAG 
-[三四行介紹+R
-top-kretrieved doc images
-= Rq, Er(V) , Y= Gq, Eg(R), (1)]
-
-Col2: Causal Formulation of Degradation in VisRAG
-[三四行介紹+定義non-causal path D→X →Z →A
-while preserving the causal route S→X→Z→A] 
-
-接著下面銜接主要contribution (2*2)
-Row1-col1: Non-Causal Path.
-Row2-col1: Non-Causal Distortion Modeling
-Row1-col2: Causal Path
-Row2-col2: Causal Semantic Alignment
-
-我希望每個都盡量精簡, 請從論文幫我整理要放上網頁的文字和公式 -->
-
+<hr/>
 <section class="section">
   <div class="container is-max-desktop">
     <div class="content has-text-justified">
@@ -389,6 +367,27 @@ Row2-col2: Causal Semantic Alignment
       </div>
   </div>
 </section>
+
+
+<hr/>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content has-text-justified">
+      <h2 class="title is-3 has-text-centered">Distortion-VisRAG Dataset</h2>
+      <div class="has-text-centered">
+        <img style="width: 100%;" src="./robustvisrag_files/DVisRAG.png"
+             alt="Samples of DVisRAG."/>
+        <div class="content has-text-justified">
+          <p>
+          Distortion-VisRAG (DVisRAG) extends VisRAG with large-scale synthetic and real-world degradations 
+          to systematically evaluate robustness in vision-based RAG systems. 
+          The benchmark contains 367,608 Q–D pairs across seven document domains, 
+          including 12 synthetic distortion types (five severity levels) and 5 real-world recapture conditions.
+          </p>
+        </div> 
+      </div>      
+    </div>
+  </div>
 
 <script type="text/javascript" src="./static/slick/slick.min.js"></script>
 </body>
