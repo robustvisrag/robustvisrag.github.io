@@ -53,6 +53,15 @@
         }
     </style>
   
+    <style>
+      .custom-hr {
+        border: none;
+        border-top: 2px solid #33333390; /* 设置粗细、样式、颜色 */
+        width: 50%; /* 设置宽度 */
+        margin: 20px auto; /* 上下边距，水平居中 */
+      }
+    </style>
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EDF010G6PN"></script>
   <script>
@@ -285,6 +294,7 @@ Row2-col2: Causal Semantic Alignment
         RobustVisRAG enhances Vision-based Retrieval-Augmented Generation (VisRAG) under visual degradations through causality-guided semantic–degradation disentanglement. By explicitly separating degradation and semantic factors inside the vision encoder, our framework suppresses degradation-induced bias while preserving task-relevant representations — without introducing additional inference cost.
       </div>
 
+      <hr class="custom-hr">
       <h3 class="title is-4 has-text-centered">Preliminary</h3>
       <div class="columns is-multiline is-variable is-6">
         <!-- VisRAG -->
@@ -320,7 +330,7 @@ Row2-col2: Causal Semantic Alignment
             \[
             D \rightarrow X \rightarrow Z \rightarrow A,   
             \]
-            while preserving the <span class="tag is-light" style="background-color: #ffeef0; color: #1e5e1e;">causal path</span>:
+            while preserving the <span class="tag is-light" style="background-color: #e7f6e7; color: #1e5e1e;">causal path</span>:
             \[
             S \rightarrow X \rightarrow Z \rightarrow A
             \]
@@ -328,7 +338,7 @@ Row2-col2: Causal Semantic Alignment
         </div>
       </div>
 
-
+      <hr class="custom-hr">
       <h3 class="title is-4 has-text-centered">RobustVisRAG</h3>
       <div class="columns is-multiline is-variable is-6">
         <!-- x -->
