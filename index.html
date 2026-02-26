@@ -109,9 +109,9 @@
         <div class="is-size-5 publication-authors">
           <div class="author-block"><a href="https://sites.google.com/view/cihsiang/home">I-Hsiang Chen</a> <sup> 1 </sup></div>
           <div class="author-block"><a href="https://scholar.google.com/citations?user=oZanP1AAAAAJ&hl=zh-TW"> Yu-Wei Liu</a> <sup> 1</sup></div>
-          <div class="author-block"><a href="https://scholar.google.com.tw/citations?user=xUtdoMcAAAAJ&hl=zh-TW"> Tse-Yu Wu</a> <sup> 1</sup></div>
-          <div class="author-block"><a href="https://scholar.google.com.tw/citations?user=xUtdoMcAAAAJ&hl=zh-TW"> Yu-Chien Chiang</a> <sup> 1</sup></div>
-          <div class="author-block"><a href="https://scholar.google.com.tw/citations?user=xUtdoMcAAAAJ&hl=zh-TW"> Yang Jen-Chieh</a> <sup> 1</sup></div>
+          <div class="author-block"><a href=""> Tse-Yu Wu</a> <sup> 1</sup></div>
+          <div class="author-block"><a href=""> Yu-Chien Chiang</a> <sup> 1</sup></div>
+          <div class="author-block"><a href="https://scholar.google.com/citations?user=a-i4INAAAAAJ&hl=zh-TW"> Yang Jen-Chieh</a> <sup> 1</sup></div>
           <div class="author-block"><a href="https://sites.google.com/view/weitingchen/home"> Wei-Ting Chen</a> <sup> 2 </sup></div>
         <div class="is-size-5 publication-authors">
           <span class="author-block"><sup>1</sup>National Taiwan University</span>
@@ -129,7 +129,7 @@
           <div class="publication-links">
             <!-- PDF Link. -->
             <span class="link-block">
-                <a href="https://arxiv.org/abs/2501.13134" 
+                <a href="https://arxiv.org/abs/2602.22013" 
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -138,7 +138,7 @@
                 </a>
               </span>
             <span class="link-block">
-                <a href="https://arxiv.org/abs/2501.13134" 
+                <a href="https://arxiv.org/abs/2602.22013" 
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -147,7 +147,7 @@
                 </a>
             </span>
             <span class="link-block">
-              <a href="https://github.com/unirestore/UniRestore"  
+              <a href="https://robustvisrag.github.io/"  
                  class="external-link button is-normal is-rounded is-dark">
                 <span class="icon">
                     <i class="fab fa-github"></i>
@@ -157,7 +157,7 @@
             </span>
             <!-- Dataset Link. -->
             <span class="link-block">
-              <a href="https://github.com/unirestore/UniRestore" 
+              <a href="https://robustvisrag.github.io/" 
                  class="external-link button is-normal is-rounded is-dark">
                 <span class="icon">
                     <i class="far fa-images"></i>
@@ -171,37 +171,6 @@
     </div>
   </div>
 </section>
-
-<!-- <section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video autoplay muted loop playsinline style="width: 100%; height: auto; border-radius: 12px;">
-        <source src="./unirestore_files/teaser/teaser2.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="methodname">UniRestore</span> is a unified image restoration framework for both perceptual and machine vision.
-      </h2>
-    </div>
-  </div>
-</section>  -->
-
-<!-- 
-
-<div class="columns is-centered">
-  <div class="column is-two-thirds has-text-justified">
-    <p>
-      <b>UniRestore</b> leverages diffusion prior to unify <span class="tag is-light is-info">Perceptual Image Restoration (PIR)</span> 
-      and <span class="tag is-light is-warning">Task-oriented Image Restoration (TIR)</span>,
-      achieving both high visual fidelity and task utility.
-      <b>PIR</b> enhances visual clarity, but its outputs may not benefit recognition tasks.
-      In contrast, <b>TIR</b> optimizes features for tasks like classification or segmentation,
-      but often compromises visual appeal.
-    </p>
-  </div>
-</div> -->
-
-
 <!-- 
 <hr/>
 <!DOCTYPE html>
@@ -238,7 +207,32 @@
 </body>
 </html> -->
 
-
+<section class="hero teaser">
+  <div class="img-container">
+    <div class="image-with-caption">
+      <img class="regular-gif" src="./robustvisrag_files/Overview.png" style="width: 60%; height: auto;">
+    </div>
+  </div>
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- <video autoplay muted loop playsinline style="width: 100%; height: auto; border-radius: 12px;">
+        <source src="" type="video/mp4">
+        Your browser does not support the video tag.
+      </video> -->
+      <div class="content has-text-justified">
+        <p>
+            Vision-based Retrieval-Augmented Generation (VisRAG) leverages vision-language models (VLMs) to jointly retrieve relevant visual documents and generate grounded answers based on multimodal evidence. 
+            However, existing VisRAG models degrade in performance when visual inputs suffer from distortions such as blur, noise, low light, or shadow, where semantic and degradation factors become entangled within pretrained visual encoders, leading to errors in both retrieval and generation stages.
+        </p>
+        <p>
+            To address this limitation, we introduce RobustVisRAG, a causality-guided dual-path framework that improves VisRAG robustness while preserving efficiency and zero-shot generalization. RobustVisRAG uses a non-causal path to capture degradation signals through unidirectional attention and a causal path to learn purified semantics guided by these signals. 
+            Together with the proposed Non-Causal Distortion Modeling and Causal Semantic Alignment objectives, the framework enforces a clear separation between semantics and degradations, enabling stable retrieval and generation under challenging visual conditions. To evaluate robustness under realistic conditions, we introduce the Distortion-VisRAG dataset, a large-scale benchmark containing both synthetic and real-world degraded documents across seven domains, with 12 synthetic and 5 real distortion types that comprehensively reflect practical visual degradations. 
+            Experimental results show that RobustVisRAG improves retrieval, generation, and end-to-end performance by 7.35%, 6.35%, and 12.40%, respectively, on real-world degradations, while maintaining comparable accuracy on clean inputs.  
+        </p> 
+      </div>
+    </div>
+  </div>
+</section> 
 
 <script type="text/javascript" src="./static/slick/slick.min.js"></script>
 </body>
