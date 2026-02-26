@@ -339,7 +339,7 @@ Row2-col2: Causal Semantic Alignment
 
       <h3 class="title is-4 has-text-centered">RobustVisRAG</h3>
       <div class="columns is-multiline is-variable is-6">
-        <!-- x -->
+        <!-- Non-Causal Path -->
         <div class="column is-half">
           <p class="content has-text-justified">
             <span class="tag is-light" style="background-color: #ffeef0; color: #b30033;">Non-Causal Path</span> 
@@ -361,13 +361,28 @@ Row2-col2: Causal Semantic Alignment
           </p>
         </div>
 
-        <!-- x -->
+        <!-- Causal Path -->
         <div class="column is-half">
           <p class="content has-text-justified">
             <span class="tag is-light" style="background-color: #e7f6e7; color: #1e5e1e;">Causal Path</span> 
-            adapts restored encoder features for diverse recognition tasks by integrating them with diffusion features in the decoder. Instead of using separate adapters per task, TFA employs lightweight, learnable prompts that guide feature fusion at each layer. These prompts are dynamically updated, allowing efficient task adaptation without retraining the entire model. This design ensures scalability and enables seamless extension to new tasks with minimal overhead.
+            The causal branch aggregates patch tokens bidirectionally to produce purified semantic embeddings: \( Z_{sem} \)
+            This path is isolated from degradation tokens and is the only representation used at inference.
+          </p>
+          <hr class="dashed-line">
+          
+          <p class="content has-text-justified">
+            <b>Causal Semantic Alignment (CSA):</b> To ensure degradation-invariant semantics, we aligns degraded semantic embeddings with their clean counterparts while enforcing independence between semantic and degradation representations.:
+            \[
+            \mathcal{L}_{\text{CSA}} = \frac{1}{T} \sum_{i=1}^{T}
+            \Big[(1 - \langle Z_{\text{sem},i}^{\text{deg}}, Z_{\text{sem},i}^{\text{clean}} \rangle)
+            + \big|\langle Z_{\text{sem},i}^{\text{deg}}, Z_{\text{deg}}^{\text{deg}} \rangle\big|\Big] 
+            + \frac{1}{T} \sum_{i=1}^{T}
+            \big\| Z_{\text{sem},i}^{\text{deg}} - Z_{\text{sem},i}^{\text{clean}} \big\|_2^2.
+            \] 
+            CSA enforces semantic consistency while discouraging degradation contamination.
           </p>
         </div>
+
       </div>
   </div>
 </section>
