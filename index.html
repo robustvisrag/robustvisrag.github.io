@@ -290,8 +290,13 @@ Row2-col2: Causal Semantic Alignment
         <!-- VisRAG -->
         <div class="column is-half">
           <p class="content has-text-justified">
-            <b>Vision-based RAG (VisRAG):</b> Given a textual query \[q\] (e.g., a question or instruction) and a visual corpus \( \mathcal{V} = \{ X_i \}_{i=1}^{N} \),  
-            VisRAG retrieves the top-$k$ most relevant document images and generates a response as follows:
+            <b>Vision-based RAG (VisRAG):</b> Given a textual query \(q\) (e.g., a question or instruction) and a visual corpus \( \mathcal{V} = \{ X_i \}_{i=1}^{N} \),  
+            VisRAG retrieves the top-\(k\) most relevant document images and generates a response as follows:
+            \[ \underbrace{R}_{\text{top-}k\ \text{retrieved doc images}}
+                = \mathcal{R}\!\big(q,\; \mathcal{E}_r(\mathcal{V})\big)
+                \qquad
+                Y = \mathcal{G}\!\big(q,\; \mathcal{E}_g(R)\big) 
+            \]
           </p>
         </div>
 
