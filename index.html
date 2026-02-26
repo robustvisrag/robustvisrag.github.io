@@ -373,12 +373,15 @@ Row2-col2: Causal Semantic Alignment
           <p class="content has-text-justified">
             <b>Causal Semantic Alignment (CSA):</b> To ensure degradation-invariant semantics, we aligns degraded semantic embeddings with their clean counterparts while enforcing independence between semantic and degradation representations.:
             \[
-            \mathcal{L}_{\text{CSA}} = \frac{1}{T} \sum_{i=1}^{T}
+            \begin{aligned}
+            \mathcal{L}_{\text{CSA}} 
+            &= \frac{1}{T} \sum_{i=1}^{T}
             \Big[(1 - \langle Z_{\text{sem},i}^{\text{deg}}, Z_{\text{sem},i}^{\text{clean}} \rangle)
-            + \big|\langle Z_{\text{sem},i}^{\text{deg}}, Z_{\text{deg}}^{\text{deg}} \rangle\big|\Big] 
-            + \frac{1}{T} \sum_{i=1}^{T}
+            + \big|\langle Z_{\text{sem},i}^{\text{deg}}, Z_{\text{deg}}^{\text{deg}} \rangle\big|\Big] \\
+            &\quad + \frac{1}{T} \sum_{i=1}^{T}
             \big\| Z_{\text{sem},i}^{\text{deg}} - Z_{\text{sem},i}^{\text{clean}} \big\|_2^2.
-            \] 
+            \end{aligned}
+            \]
             CSA enforces semantic consistency while discouraging degradation contamination.
           </p>
         </div>
