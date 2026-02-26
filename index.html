@@ -11,7 +11,6 @@
   <link rel="icon"
         type="image/x-icon"
         href="./static/images/favicon.ico"/> -->
-
   <meta name="description"
         content="RobustVisRAG improves Vision-based Retrieval-Augmented Generation (VisRAG) under visual degradations by introducing a causality-guided dual-path encoder that disentangles semantic and degradation factors. Through Non-Causal Distortion Modeling (NCDM) and Causal Semantic Alignment (CSA), it enhances retrieval, generation, and end-to-end robustness without additional inference cost. We further introduce the Distortion-VisRAG benchmark covering synthetic and real-world degradations.">
   <meta name="keywords" content="Retrieval-Augmented Generation, RAG, Vision-Language Models, VLM, Causal Learning">
@@ -72,6 +71,8 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -233,6 +234,94 @@
     </div>
   </div>
 </section> 
+
+<style>
+  .module-block {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .module-block .image {
+    flex-shrink: 0;
+  }
+  .module-block .content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+</style>
+
+<!-- 重新來過好了, 我的架構會變成:
+
+Overview
+簡短的話大概介紹main contribution
+
+Preliminary (2 columns)
+Col1: VisRAG 
+[三四行介紹+R
+top-kretrieved doc images
+= Rq, Er(V) , Y= Gq, Eg(R), (1)]
+
+Col2: Causal Formulation of Degradation in VisRAG
+[三四行介紹+定義non-causal path D→X →Z →A
+while preserving the causal route S→X→Z→A] 
+
+接著下面銜接主要contribution (2*2)
+Row1-col1: Non-Causal Path.
+Row2-col1: Non-Causal Distortion Modeling
+Row1-col2: Causal Path
+Row2-col2: Causal Semantic Alignment
+
+我希望每個都盡量精簡, 請從論文幫我整理要放上網頁的文字和公式 -->
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content has-text-justified">
+      <h2 class="title is-3 has-text-centered">Proposed Method</h2>
+      <p>
+        RobustVisRAG enhances Vision-based Retrieval-Augmented Generation (VisRAG) under visual degradations through causality-guided semantic–degradation disentanglement. By explicitly separating degradation and semantic factors inside the vision encoder, our framework suppresses degradation-induced bias while preserving task-relevant representations — without introducing additional inference cost.
+      </div>
+
+      <h3 class="title is-4 has-text-centered">Preliminary</h3>
+      <div class="columns is-multiline is-variable is-6">
+        <!-- VisRAG -->
+        <div class="column is-half">
+          <p class="content has-text-justified">
+            <b>Vision-based RAG (VisRAG):</b> Given a textual query $q$ (e.g., a question or instruction) and a visual corpus $V = {X_i}_{i=1}^{N}$,  
+            VisRAG retrieves the top-$k$ most relevant document images and generates a response as follows:
+          </p>
+        </div>
+
+        <!-- SCM -->
+        <div class="column is-half">
+          <p class="content has-text-justified">
+            <b>Structural Causal Model (SCM)</b> 
+            adapts restored encoder features for diverse recognition tasks by integrating them with diffusion features in the decoder. Instead of using separate adapters per task, TFA employs lightweight, learnable prompts that guide feature fusion at each layer. These prompts are dynamically updated, allowing efficient task adaptation without retraining the entire model. This design ensures scalability and enables seamless extension to new tasks with minimal overhead.
+          </p>
+        </div>
+      </div>
+
+      <h3 class="title is-4 has-text-centered">RobustVisRAG</h3>
+      <div class="columns is-multiline is-variable is-6">
+        <!-- x -->
+        <div class="column is-half">
+          <p class="content has-text-justified">
+            <span class="tag is-light" style="background-color: #ffeef0; color: #b30033;">Vision-based RAG (VisRAG)</span> 
+            is designed to restore clean and informative features from degraded inputs within the encoder. It enhances feature quality through a four-step process: feature enhancement, intra-group channel attention, inter-group channel integration, and feature recovery. By modeling diverse degradation patterns and emphasizing task-relevant information, CFRM provides complementary representations that guide the decoder for high-quality image restoration and improved downstream performance.
+          </p>
+        </div>
+
+        <!-- x -->
+        <div class="column is-half">
+          <p class="content has-text-justified">
+            <span class="tag is-light" style="background-color: #e7f6e7; color: #1e5e1e;">Structural Causal Model (SCM)</span> 
+            adapts restored encoder features for diverse recognition tasks by integrating them with diffusion features in the decoder. Instead of using separate adapters per task, TFA employs lightweight, learnable prompts that guide feature fusion at each layer. These prompts are dynamically updated, allowing efficient task adaptation without retraining the entire model. This design ensures scalability and enables seamless extension to new tasks with minimal overhead.
+          </p>
+        </div>
+      </div>
+  </div>
+</section>
 
 <script type="text/javascript" src="./static/slick/slick.min.js"></script>
 </body>
