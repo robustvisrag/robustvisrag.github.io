@@ -294,7 +294,6 @@ Row2-col2: Causal Semantic Alignment
         RobustVisRAG enhances Vision-based Retrieval-Augmented Generation (VisRAG) under visual degradations through causality-guided semantic–degradation disentanglement. By explicitly separating degradation and semantic factors inside the vision encoder, our framework suppresses degradation-induced bias while preserving task-relevant representations — without introducing additional inference cost.
       </div>
 
-      <hr class="custom-hr">
       <h3 class="title is-4 has-text-centered">Preliminary</h3>
       <div class="columns is-multiline is-variable is-6">
         <!-- VisRAG -->
@@ -338,21 +337,34 @@ Row2-col2: Causal Semantic Alignment
         </div>
       </div>
 
-      <hr class="custom-hr">
       <h3 class="title is-4 has-text-centered">RobustVisRAG</h3>
       <div class="columns is-multiline is-variable is-6">
         <!-- x -->
         <div class="column is-half">
           <p class="content has-text-justified">
-            <span class="tag is-light" style="background-color: #ffeef0; color: #b30033;">Vision-based RAG (VisRAG)</span> 
-            is designed to restore clean and informative features from degraded inputs within the encoder. It enhances feature quality through a four-step process: feature enhancement, intra-group channel attention, inter-group channel integration, and feature recovery. By modeling diverse degradation patterns and emphasizing task-relevant information, CFRM provides complementary representations that guide the decoder for high-quality image restoration and improved downstream performance.
+            <span class="tag is-light" style="background-color: #ffeef0; color: #b30033;">Non-Causal Path</span> 
+            We introduce a dedicated non-causal token to aggregate degradation signals via <i>unidirectional attention</i>, producing a degradation representation: \( Z_{zeg} \)
+            Patch tokens do not attend back to this token, preventing degradation leakage into semantic representations.
+          </p>
+          <hr class="dashed-line">
+          
+          <p class="content has-text-justified">
+            <b>Non-Causal Distortion Modeling (NCDM):</b> To structure the degradation subspace, we apply a triplet contrastive objective:
+            \[
+            \mathcal{L}_{\text{NCDM}}
+            = \max\big(0,\;
+            \|Z^a_{\text{deg}} - Z^p_{\text{deg}}\|_2^2
+            - \|Z^a_{\text{deg}} - Z^n_{\text{deg}}\|_2^2
+            + \delta \big),
+            \] 
+            This enforces clustering of identical distortion types while separating different degradations.
           </p>
         </div>
 
         <!-- x -->
         <div class="column is-half">
           <p class="content has-text-justified">
-            <span class="tag is-light" style="background-color: #e7f6e7; color: #1e5e1e;">Structural Causal Model (SCM)</span> 
+            <span class="tag is-light" style="background-color: #e7f6e7; color: #1e5e1e;">Causal Path</span> 
             adapts restored encoder features for diverse recognition tasks by integrating them with diffusion features in the decoder. Instead of using separate adapters per task, TFA employs lightweight, learnable prompts that guide feature fusion at each layer. These prompts are dynamically updated, allowing efficient task adaptation without retraining the entire model. This design ensures scalability and enables seamless extension to new tasks with minimal overhead.
           </p>
         </div>
