@@ -219,19 +219,14 @@
 </body>
 </html> -->
 
-<section class="hero teaser">
-  <div class="img-container">
-    <div class="image-with-caption">
-      <img class="regular-gif" src="./robustvisrag_files/Overview.png" style="width: 60%; height: auto;">
-    </div>
-  </div>
+
+<section class="section">
   <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- <video autoplay muted loop playsinline style="width: 100%; height: auto; border-radius: 12px;">
-        <source src="" type="video/mp4">
-        Your browser does not support the video tag.
-      </video> -->
-      <div class="content has-text-justified">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
         <p>
             Vision-based Retrieval-Augmented Generation (VisRAG) leverages vision-language models (VLMs) to jointly retrieve relevant visual documents and generate grounded answers based on multimodal evidence. 
             However, existing VisRAG models degrade in performance when visual inputs suffer from distortions such as blur, noise, low light, or shadow, where semantic and degradation factors become entangled within pretrained visual encoders, leading to errors in both retrieval and generation stages.
@@ -241,10 +236,11 @@
             Together with the proposed Non-Causal Distortion Modeling and Causal Semantic Alignment objectives, the framework enforces a clear separation between semantics and degradations, enabling stable retrieval and generation under challenging visual conditions. To evaluate robustness under realistic conditions, we introduce the Distortion-VisRAG dataset, a large-scale benchmark containing both synthetic and real-world degraded documents across seven domains, with 12 synthetic and 5 real distortion types that comprehensively reflect practical visual degradations. 
             Experimental results show that RobustVisRAG improves retrieval, generation, and end-to-end performance by 7.35%, 6.35%, and 12.40%, respectively, on real-world degradations, while maintaining comparable accuracy on clean inputs.  
         </p> 
+        </div>
       </div>
     </div>
   </div>
-</section> 
+</section>    
 
 <style>
   .module-block {
@@ -268,9 +264,13 @@
   <div class="container is-max-desktop">
     <div class="content has-text-justified">
       <h2 class="title is-3 has-text-centered">Proposed Method</h2>
-      <p>
-        RobustVisRAG enhances Vision-based Retrieval-Augmented Generation (VisRAG) under visual degradations through causality-guided semantic–degradation disentanglement. By explicitly separating degradation and semantic factors inside the vision encoder, our framework suppresses degradation-induced bias while preserving task-relevant representations — without introducing additional inference cost.
-      </div>
+      <div class="has-text-centered">
+        <img style="width: 100%;" src="./robustvisrag_files/Overview.png"
+             alt="Overview of RobustVisRAG."/>
+        <div class="content has-text-justified">
+        <p>
+          RobustVisRAG enhances Vision-based Retrieval-Augmented Generation (VisRAG) under visual degradations through causality-guided semantic–degradation disentanglement. By explicitly separating degradation and semantic factors inside the vision encoder, our framework suppresses degradation-induced bias while preserving task-relevant representations — without introducing additional inference cost.
+        </div>
 
       <h3 class="title is-4 has-text-centered">Preliminary</h3>
       <div class="columns is-multiline is-variable is-6">
@@ -324,7 +324,7 @@
             We introduce a dedicated non-causal token to aggregate degradation signals via <i>unidirectional attention</i>, producing a degradation representation: \( Z_{zeg} \)
             Patch tokens do not attend back to this token, preventing degradation leakage into semantic representations.
           </p>
-          <hr class="dashed-line">
+          <!-- <hr class="dashed-line"> -->
           
           <p class="content has-text-justified">
             <b>Non-Causal Distortion Modeling (NCDM):</b> To structure the degradation subspace, we apply a triplet contrastive objective:
@@ -346,7 +346,7 @@
             The causal branch aggregates patch tokens bidirectionally to produce purified semantic embeddings: \( Z_{sem} \)
             This path is isolated from degradation tokens and is the only representation used at inference.
           </p>
-          <hr class="dashed-line">
+          <!-- <hr class="dashed-line"> -->
           
           <p class="content has-text-justified">
             <b>Causal Semantic Alignment (CSA):</b> To ensure degradation-invariant semantics, we aligns degraded semantic embeddings with their clean counterparts while enforcing independence between semantic and degradation representations.:
@@ -388,6 +388,57 @@
       </div>      
     </div>
   </div>
+</section>
+
+<hr/>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content has-text-justified">
+      <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
+      <p> 
+        We evaluate RobustVisRAG across retrieval, generation, and end-to-end settings 
+        under clean, synthetic, and real-world degradations. 
+        Our method consistently improves robustness without additional inference cost.      
+      </p>
+      <div class="img-container">
+        <div class="column is-half">
+          <div class="image-with-caption">
+              <div class="caption"></b>Overall retrieval performance (MRR@10).</b></div>
+              <img style="width: 100%;" src="./robustvisrag_files/Exp_Ret.png"/>
+          </div>
+          <div class="image-with-caption">
+              <div class="caption"></b>End-to-end retrieval–generation performance.</b></div>
+              <img style="width: 100%;" src="./robustvisrag_files/Exp_E2E.png"/>
+          </div>
+        </div>
+
+        <div class="column is-half">
+          <div class="image-with-caption">
+              <div class="caption"></b>Overall generation performance (Accuracy).</b></div>
+              <img style="width: 100%;" src="./robustvisrag_files/Exp_Gen.png"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr/>
+<section class="section" id="BibTeX">
+  <div class="container content is-max-desktop">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{chen2026robustvisragcausalityawarevisionbasedretrievalaugmented,
+      title={RobustVisRAG: Causality-Aware Vision-Based Retrieval-Augmented Generation under Visual Degradations}, 
+      author={I-Hsiang Chen and Yu-Wei Liu and Tse-Yu Wu and Yu-Chien Chiang and Jen-Chien Yang and Wei-Ting Chen},
+      year={2026},
+      eprint={2602.22013},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2602.22013}, 
+    }
+    </code></pre>
+  </div>
+</section>
 
 <script type="text/javascript" src="./static/slick/slick.min.js"></script>
 </body>
