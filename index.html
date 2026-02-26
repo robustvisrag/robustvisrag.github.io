@@ -342,7 +342,7 @@ Row2-col2: Causal Semantic Alignment
         <!-- Non-Causal Path -->
         <div class="column is-half">
           <p class="content has-text-justified">
-            <span class="tag is-light" style="background-color: #ffeef0; color: #b30033;">Non-Causal Path</span> 
+            <span class="tag is-light" style="background-color: #ffeef0; color: #b30033;"><b>Non-Causal Path</b></span> 
             We introduce a dedicated non-causal token to aggregate degradation signals via <i>unidirectional attention</i>, producing a degradation representation: \( Z_{zeg} \)
             Patch tokens do not attend back to this token, preventing degradation leakage into semantic representations.
           </p>
@@ -364,7 +364,7 @@ Row2-col2: Causal Semantic Alignment
         <!-- Causal Path -->
         <div class="column is-half">
           <p class="content has-text-justified">
-            <span class="tag is-light" style="background-color: #e7f6e7; color: #1e5e1e;">Causal Path</span> 
+            <span class="tag is-light" style="background-color: #e7f6e7; color: #1e5e1e;"><b>Causal Path</b></span> 
             The causal branch aggregates patch tokens bidirectionally to produce purified semantic embeddings: \( Z_{sem} \)
             This path is isolated from degradation tokens and is the only representation used at inference.
           </p>
