@@ -290,7 +290,8 @@ Row2-col2: Causal Semantic Alignment
         <!-- VisRAG -->
         <div class="column is-half">
           <p class="content has-text-justified">
-            <b>Vision-based RAG (VisRAG):</b> Given a textual query \(q\) (e.g., a question or instruction) and a visual corpus \( \mathcal{V} = \{ X_i \}_{i=1}^{N} \),  
+            <b>Vision-based RAG (VisRAG):</b> 
+            Given a textual query \(q\) (e.g., a question or instruction) and a visual corpus \( \mathcal{V} = \{ X_i \}_{i=1}^{N} \),  
             VisRAG retrieves the top-\(k\) most relevant document images and generates a response as follows:
             \[ \underbrace{R}_{\text{top-}k\ \text{retrieved doc images}}
                 = \mathcal{R}\!\big(q,\; \mathcal{E}_r(\mathcal{V})\big)
@@ -307,11 +308,26 @@ Row2-col2: Causal Semantic Alignment
         <!-- SCM -->
         <div class="column is-half">
           <p class="content has-text-justified">
-            <b>Structural Causal Model (SCM):</b> We model semantic content S and degradation D as independent causes of the observed image X: 
-            ABC
+            <b>Structural Causal Model (SCM):</b> 
+            We model semantic content \( S \) and degradation \( D \) as independent causes of the observed image \( X \). 
+            In standard encoders, both factors are entangled after conditioning on \( X \), leading to degradation leakage in downstream predictions \( A \). 
+            The overall causal structure can be summarized as:
+            \[
+            S \rightarrow X \leftarrow D, \qquad
+            X \rightarrow Z \rightarrow A
+            \]
+            Our goal is to block the <span class="tag is-light" style="background-color: #ffeef0; color: #b30033;">non-causal path</span>:
+            \[
+            D \rightarrow X \rightarrow Z \rightarrow A,   
+            \]
+            while preserving the <span class="tag is-light" style="background-color: #ffeef0; color: #1e5e1e;">causal path</span>:
+            \[
+            S \rightarrow X \rightarrow Z \rightarrow A
+            \]
           </p>
         </div>
       </div>
+
 
       <h3 class="title is-4 has-text-centered">RobustVisRAG</h3>
       <div class="columns is-multiline is-variable is-6">
