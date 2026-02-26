@@ -297,13 +297,17 @@ Row2-col2: Causal Semantic Alignment
                 \qquad
                 Y = \mathcal{G}\!\big(q,\; \mathcal{E}_g(R)\big) 
             \]
+            where \( X_i \) denotes the \(i\)-th document image in the corpus,  
+            \( \mathcal{E}_r \) and \( \mathcal{E}_g \) represent the retrieval and generation encoders,  
+            and \( \mathcal{R}(\cdot) \) and \( \mathcal{G}(\cdot) \) denote the retrieval and generation modules, respectively.  
+            Under visual degradations, corrupted representations lead to unstable retrieval and generation.
           </p>
         </div>
 
         <!-- SCM -->
         <div class="column is-half">
           <p class="content has-text-justified">
-            <b>Structural Causal Model (SCM)</b> 
+            <b>Structural Causal Model (SCM):</b> We model semantic content S and degradation D as independent causes of the observed image X: 
             ABC
           </p>
         </div>
