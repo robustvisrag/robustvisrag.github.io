@@ -144,6 +144,41 @@
     </div>
   </section>  -->
 
+  <hr/>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Centered Responsive YouTube Video Embed</title>
+      <style>
+          .video-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+          }
+          .video-container iframe {
+              width: 100%;
+              max-width: 720px; /* Optional: Set a max-width if you want */
+              height: auto;
+              aspect-ratio: 16 / 9;
+          }
+      </style>
+  </head>
+  <body>
+      <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/3RFDiwW5F0A" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen>
+      </iframe>
+      </div>
+  </body>
+  </html>
+
   <!-- Abstract -->
   <section class="section hero is-light">
       <div class="container is-max-desktop">
